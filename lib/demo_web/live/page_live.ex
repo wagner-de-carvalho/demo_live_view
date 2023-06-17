@@ -26,7 +26,16 @@ defmodule DemoWeb.PageLive do
 
   @impl true
   def handle_event("adding_more", %{"add_amount" => the_added_amount}, socket) do
-    {number, _} = Integer.parse(the_added_amount)
-    {:noreply, assign(socket, number: socket.assigns.number + number)}
+    amount_to_add_by =
+      case Integer.parse(the_added_amount) do
+        {number, _} -> number
+        :error -> 0
+      end
+
+    {:noreply,
+     assign(socket,
+       number: socket.assigns.number + amount_to_add_by,
+       form: to_form(%{adding_amount_default: the_added_amount})
+     )}
   end
 end
