@@ -12,9 +12,9 @@ defmodule DemoWeb.PageLive do
     <%= @number %>
     <.button phx-click="add">Add</.button>
 
-    <.simple_form for={@form} phx-submit="adding_more">
+    <.simple_form class="mt-40" for={@form} phx-submit="adding_more">
       <.input field={@form[:add_amount]} value={@form.params.adding_amount_default} />
-      <.button>Add More</.button>
+      <.button class="w-full">Add More</.button>
     </.simple_form>
     """
   end
